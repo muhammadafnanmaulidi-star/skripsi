@@ -1,0 +1,407 @@
+[
+    {
+        "table": "banners",
+        "columns": [
+            "id",
+            "image",
+            "title",
+            "alt_text",
+            "is_active",
+            "created_at",
+            "updated_at"
+        ],
+        "foreign_keys": [],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "blogs",
+        "columns": [
+            "id",
+            "title",
+            "slug",
+            "excerpt",
+            "content",
+            "image",
+            "user_id",
+            "is_published",
+            "published_at",
+            "created_at",
+            "updated_at"
+        ],
+        "foreign_keys": [
+            "user_id -> users.id"
+        ],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "cache",
+        "columns": [
+            "key",
+            "value",
+            "expiration"
+        ],
+        "foreign_keys": [],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "cache_locks",
+        "columns": [
+            "key",
+            "owner",
+            "expiration"
+        ],
+        "foreign_keys": [],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "categories",
+        "columns": [
+            "id",
+            "name",
+            "slug",
+            "order",
+            "created_at",
+            "updated_at"
+        ],
+        "foreign_keys": [],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "community_photos",
+        "columns": [
+            "id",
+            "image",
+            "caption",
+            "order",
+            "is_active",
+            "created_at",
+            "updated_at"
+        ],
+        "foreign_keys": [],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "crews",
+        "columns": [
+            "id",
+            "image",
+            "name",
+            "position",
+            "is_active",
+            "created_at",
+            "updated_at"
+        ],
+        "foreign_keys": [],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "employees",
+        "columns": [
+            "id",
+            "name",
+            "position",
+            "photo",
+            "hashtag",
+            "order",
+            "created_at",
+            "updated_at"
+        ],
+        "foreign_keys": [],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "failed_jobs",
+        "columns": [
+            "id",
+            "uuid",
+            "connection",
+            "queue",
+            "payload",
+            "exception",
+            "failed_at"
+        ],
+        "foreign_keys": [],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "google_reviews_cache",
+        "columns": [
+            "id",
+            "place_id",
+            "reviews_data",
+            "fetched_at",
+            "created_at",
+            "updated_at"
+        ],
+        "foreign_keys": [],
+        "missing_fk_columns": [
+            "place_id"
+        ]
+    },
+    {
+        "table": "job_batches",
+        "columns": [
+            "id",
+            "name",
+            "total_jobs",
+            "pending_jobs",
+            "failed_jobs",
+            "failed_job_ids",
+            "options",
+            "cancelled_at",
+            "created_at",
+            "finished_at"
+        ],
+        "foreign_keys": [],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "jobs",
+        "columns": [
+            "id",
+            "queue",
+            "payload",
+            "attempts",
+            "reserved_at",
+            "available_at",
+            "created_at"
+        ],
+        "foreign_keys": [],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "members",
+        "columns": [
+            "id",
+            "name",
+            "phone",
+            "points",
+            "status",
+            "registration_source",
+            "created_at",
+            "updated_at"
+        ],
+        "foreign_keys": [],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "menus",
+        "columns": [
+            "id",
+            "category_id",
+            "subcategory_id",
+            "name",
+            "main_ingredient",
+            "description",
+            "price",
+            "discount_percent",
+            "discount",
+            "image",
+            "image_position",
+            "image_zoom",
+            "is_available",
+            "stock",
+            "created_at",
+            "updated_at",
+            "special_type"
+        ],
+        "foreign_keys": [
+            "category_id -> categories.id",
+            "subcategory_id -> subcategories.id"
+        ],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "migrations",
+        "columns": [
+            "id",
+            "migration",
+            "batch"
+        ],
+        "foreign_keys": [],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "order_items",
+        "columns": [
+            "id",
+            "order_id",
+            "menu_id",
+            "quantity",
+            "price",
+            "created_at",
+            "updated_at"
+        ],
+        "foreign_keys": [
+            "menu_id -> menus.id",
+            "order_id -> orders.id"
+        ],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "orders",
+        "columns": [
+            "id",
+            "midtrans_order_id",
+            "user_id",
+            "total_price",
+            "payment_method",
+            "status",
+            "table_number",
+            "cancel_reason",
+            "snap_token",
+            "midtrans_id",
+            "created_at",
+            "updated_at"
+        ],
+        "foreign_keys": [
+            "user_id -> users.id"
+        ],
+        "missing_fk_columns": [
+            "midtrans_order_id",
+            "midtrans_id"
+        ]
+    },
+    {
+        "table": "password_reset_tokens",
+        "columns": [
+            "email",
+            "token",
+            "created_at"
+        ],
+        "foreign_keys": [],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "posts",
+        "columns": [
+            "id",
+            "user_id",
+            "title",
+            "tag",
+            "category",
+            "color",
+            "image",
+            "status",
+            "created_at",
+            "updated_at"
+        ],
+        "foreign_keys": [
+            "user_id -> users.id"
+        ],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "products",
+        "columns": [
+            "id",
+            "name",
+            "category",
+            "price",
+            "description",
+            "image",
+            "created_at",
+            "updated_at"
+        ],
+        "foreign_keys": [],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "promos",
+        "columns": [
+            "id",
+            "title",
+            "description",
+            "image",
+            "start_date",
+            "end_date",
+            "is_active",
+            "created_at",
+            "updated_at"
+        ],
+        "foreign_keys": [],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "reservations",
+        "columns": [
+            "id",
+            "name",
+            "email",
+            "phone",
+            "date",
+            "time",
+            "guests",
+            "notes",
+            "status",
+            "created_at",
+            "updated_at"
+        ],
+        "foreign_keys": [],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "reviews",
+        "columns": [
+            "id",
+            "name",
+            "title",
+            "rating",
+            "message",
+            "avatar_url",
+            "status",
+            "created_at",
+            "updated_at"
+        ],
+        "foreign_keys": [],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "sessions",
+        "columns": [
+            "id",
+            "user_id",
+            "ip_address",
+            "user_agent",
+            "payload",
+            "last_activity"
+        ],
+        "foreign_keys": [],
+        "missing_fk_columns": [
+            "user_id"
+        ]
+    },
+    {
+        "table": "subcategories",
+        "columns": [
+            "id",
+            "category_id",
+            "name",
+            "slug",
+            "order",
+            "created_at",
+            "updated_at"
+        ],
+        "foreign_keys": [
+            "category_id -> categories.id"
+        ],
+        "missing_fk_columns": []
+    },
+    {
+        "table": "users",
+        "columns": [
+            "id",
+            "name",
+            "email",
+            "phone_number",
+            "email_verified_at",
+            "password",
+            "role",
+            "remember_token",
+            "created_at",
+            "updated_at"
+        ],
+        "foreign_keys": [],
+        "missing_fk_columns": []
+    }
+]
