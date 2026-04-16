@@ -42,11 +42,17 @@ class ReviewController extends Controller
                 'title' => ['nullable', 'string', 'max:120'],
                 'rating' => ['required', 'numeric', 'min:1', 'max:5'],
                 'message' => ['required', 'string', 'max:1000'],
-                'avatar' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:4096'],
+                'avatar' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,heic,heif', 'max:10240'],
             ]);
 
             if ($request->hasFile('avatar')) {
-                $data['avatar_url'] = $request->file('avatar')->store('reviews', 'public');
+                $file = $request->file('avatar');
+                \Illuminate\Support\Facades\Log::info('Avatar upload details:', [
+                    'originalName' => $file->getClientOriginalName(),
+                    'mimeType' => $file->getClientMimeType(),
+                    'size' => $file->getSize(),
+                ]);
+                $data['avatar_url'] = $file->store('reviews', 'public');
             }
 
             unset($data['avatar']);
@@ -59,10 +65,19 @@ class ReviewController extends Controller
             }
 
             return response()->json($review, 201);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            \Illuminate\Support\Facades\Log::warning('Review validation failed', [
+                'errors' => $e->errors(),
+                'request' => $request->except(['avatar'])
+            ]);
+            return response()->json([
+                'message' => 'Validasi gagal.',
+                'errors' => $e->errors(),
+            ], 422);
         } catch (\Exception $e) {
             \Illuminate\Support\Facades\Log::error('Review submission failed: ' . $e->getMessage(), [
                 'trace' => $e->getTraceAsString(),
-                'request' => $request->all()
+                'request' => $request->except(['avatar'])
             ]);
             return response()->json([
                 'message' => 'Terjadi kesalahan pada server.',

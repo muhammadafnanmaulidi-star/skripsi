@@ -261,6 +261,23 @@ const triggerAvatarUpload = () => {
 const onAvatarChange = (event) => {
   const file = event.target.files?.[0];
   if (file) {
+    // Client-side validation
+    const maxSize = 10 * 1024 * 1024; // 10MB
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp', 'image/heic', 'image/heif'];
+
+    if (file.size > maxSize) {
+      errors.avatar = 'Ukuran foto terlalu besar (maksimal 10MB).';
+      avatarInput.value.value = '';
+      return;
+    }
+
+    // Note: Some mobile browsers might not report HEIC mime type correctly
+    if (!file.type.startsWith('image/') && !file.name.toLowerCase().endsWith('.heic')) {
+      errors.avatar = 'File harus berupa gambar.';
+      avatarInput.value.value = '';
+      return;
+    }
+
     avatarFile.value = file;
     if (avatarPreview.value) {
       URL.revokeObjectURL(avatarPreview.value);
@@ -302,10 +319,13 @@ const submitForm = async () => {
   } catch (error) {
     if (error.response && error.response.status === 422) {
       Object.assign(errors, error.response.data.errors || {});
+      errors.general = 'Silakan periksa kembali data yang kamu masukkan.';
+    } else if (error.response && error.response.status === 413) {
+      errors.general = 'Ukuran file terlalu besar untuk dikirim.';
     } else if (error.response && error.response.status === 419) {
       errors.general = 'Sesi telah berakhir, silakan muat ulang halaman.';
     } else {
-      errors.general = error.response?.data?.error || 'Sedang terjadi kendala, silakan coba lagi nanti.';
+      errors.general = error.response?.data?.error || error.response?.data?.message || 'Sedang terjadi kendala koneksi atau server, silakan coba lagi nanti.';
       console.error('Submission error:', error);
     }
   } finally {
