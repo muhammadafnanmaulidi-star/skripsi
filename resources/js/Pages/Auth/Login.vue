@@ -52,6 +52,7 @@ const submit = () => {
             v-model="form.email"
             required
             autofocus
+            maxlength="50"
             autocomplete="username"
             class="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500"
           />
@@ -65,6 +66,7 @@ const submit = () => {
             type="password"
             v-model="form.password"
             required
+            maxlength="15"
             autocomplete="current-password"
             class="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500"
           />

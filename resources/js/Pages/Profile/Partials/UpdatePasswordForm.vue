@@ -56,6 +56,7 @@ const updatePassword = () => {
                     v-model="form.current_password"
                     type="password"
                     class="mt-1 block w-full"
+                    maxlength="15"
                     autocomplete="current-password"
                 />
 
@@ -74,6 +75,7 @@ const updatePassword = () => {
                     v-model="form.password"
                     type="password"
                     class="mt-1 block w-full"
+                    maxlength="15"
                     autocomplete="new-password"
                 />
 
@@ -91,6 +93,7 @@ const updatePassword = () => {
                     v-model="form.password_confirmation"
                     type="password"
                     class="mt-1 block w-full"
+                    maxlength="15"
                     autocomplete="new-password"
                 />
 

@@ -91,7 +91,7 @@ const form = useForm({
                         const el = document.getElementById('phone_number');
                         if(el && el.value !== val) el.value = val;
                     }"
-                    maxlength="20"
+                    maxlength="13"
                     required
                     placeholder="08xxxxxxxxxx"
                 />

@@ -52,7 +52,7 @@ class MemberController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:50|regex:/^[^0-9]*$/',
-            'phone' => 'required|string|unique:members,phone|regex:/^[0-9]+$/',
+            'phone' => 'required|string|regex:/^08[0-9]{8,11}$/|unique:members,phone',
             'points' => 'nullable|integer|min:0'
         ]);
 
@@ -75,7 +75,7 @@ class MemberController extends Controller
         
         $validated = $request->validate([
             'name' => 'nullable|string|max:50|regex:/^[^0-9]*$/',
-            'phone' => 'nullable|string|unique:members,phone,' . $id . '|regex:/^[0-9]+$/',
+            'phone' => 'nullable|string|regex:/^08[0-9]{8,11}$/|unique:members,phone,' . $id,
             'points' => 'nullable|integer|min:0'
         ]);
 
@@ -182,7 +182,7 @@ class MemberController extends Controller
     public function search(Request $request)
     {
         $request->validate([
-            'phone' => 'required|string|regex:/^[0-9]+$/'
+            'phone' => 'required|string|regex:/^08[0-9]{8,11}$/'
         ]);
 
         $member = Member::where('phone', $request->phone)->first();

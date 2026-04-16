@@ -28,8 +28,7 @@ class ProfileUpdateRequest extends FormRequest
             'phone_number' => [
                 'required',
                 'string',
-                'max:20',
-                'regex:/^[0-9]+$/',
+                'regex:/^08[0-9]{8,11}$/',
                 Rule::unique(User::class)->ignore($this->user()->id),
             ],
         ];

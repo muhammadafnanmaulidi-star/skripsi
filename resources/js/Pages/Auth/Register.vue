@@ -93,7 +93,7 @@ const filterAlpha = (e) => {
             v-model="form.phone_number"
             @input="filterNumeric"
             required
-            maxlength="20"
+            maxlength="13"
             placeholder="08xxxxxxxxxx"
             class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"
           />
@@ -108,7 +108,7 @@ const filterAlpha = (e) => {
             type="password"
             v-model="form.password"
             required
-            maxlength="50"
+            maxlength="15"
             class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"
           />
           <p v-if="form.errors.password" class="text-red-600 mt-1 text-sm">{{ form.errors.password }}</p>
@@ -122,7 +122,7 @@ const filterAlpha = (e) => {
             type="password"
             v-model="form.password_confirmation"
             required
-            maxlength="50"
+            maxlength="15"
             class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"
           />
           <p v-if="form.errors.password_confirmation" class="text-red-600 mt-1 text-sm">{{ form.errors.password_confirmation }}</p>
